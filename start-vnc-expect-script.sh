@@ -41,16 +41,17 @@ if {$force_conservative} {
 #
 # -Don
 
+set PASSWD [lindex $argv 0]
 
 set timeout -1
 spawn vncpasswd
 match_max 100000
 expect -exact "Using password file /root/.vnc/passwd\r
 Password: "
-send -- "acoman\r"
+send -- "$PASSWD\r"
 expect -exact "\r
 Verify:   "
-send -- "acoman\r"
+send -- "$PASSWD\r"
 expect -exact "\r
 Would you like to enter a view-only password (y/n)? "
 send -- "n\r"
